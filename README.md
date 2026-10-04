@@ -1,4 +1,4 @@
-# Wedding Invitation — Aarav & Meera
+# Wedding Invitation 
 
 Complete Next.js 16 + TypeScript + Tailwind CSS v4 wedding invitation
 with GSAP animations: layered cloud-reveal intro, scroll-triggered
