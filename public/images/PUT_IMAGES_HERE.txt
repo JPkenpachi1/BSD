@@ -1,0 +1,16 @@
+Optional — real photos go here (e.g. temple.jpg, couple photos for the gallery).
+
+To swap a colored placeholder for a real photo:
+
+1.  Copy the image into this folder:  public/images/temple.jpg
+2.  In the component, replace:
+
+        <Placeholder label="..." className="..." />
+
+    with:
+
+        import Image from "next/image";
+        <Image src="/images/temple.jpg" alt="Temple" fill className="object-cover" />
+
+    Keep the surrounding positioned parent div + className so the layout
+    and GSAP animation refs stay untouched.

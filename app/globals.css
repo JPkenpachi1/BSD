@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-wedding: "WeddingDay", "Brush Script MT", "Segoe Script", cursive;
+
+  --color-cream-50: #fdf6ec;
+  --color-cream-100: #f9ead2;
+  --color-cream-200: #f3d9b0;
+  --color-cream-300: #ecc489;
+  --color-gold-400: #d4af5e;
+  --color-gold-500: #c19a3f;
+  --color-gold-600: #a37f2c;
+  --color-maroon-700: #7c2d12;
+  --color-maroon-800: #5c1d0b;
+}
+
+/* Your custom script font — drop the file at public/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf */
+@font-face {
+  font-family: "WeddingDay";
+  src: url("/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: #fff;
+}
