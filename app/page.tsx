@@ -13,8 +13,8 @@ export default function Home() {
       <CoupleSection />
       {/* <StorySection /> */}
       <EventsSection />
-      {/* <GallerySection /> */}
-      {/* <RsvpSection /> */}
+      {/* <GallerySection />
+      <RsvpSection /> */}
       <SaveTheDateSection/>
     </main>
   );

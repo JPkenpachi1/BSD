@@ -12,12 +12,7 @@ export default function EventsSection() {
     <section id="events" className="relative overflow-hidden px-6 py-24">
 
       {/* SECTION BACKGROUND IMAGE */}
-      <img
-        src="/images/events-bg.jpg"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-fit "
-      />
+      
       <div className="absolute inset-0 " />
 
       {/* CONTENT */}

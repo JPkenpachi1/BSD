@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import BackgroundMusic from "@/components/background";
 
 export const metadata: Metadata = {
   title: "Divyashree & Balasubramani — Wedding Invitation",
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-cream-50 text-stone-800 antialiased">{children}</body>
+      <body className="bg-cream-50 text-stone-800 antialiased">
+        <BackgroundMusic/>
+        {children}</body>
     </html>
   );
 }

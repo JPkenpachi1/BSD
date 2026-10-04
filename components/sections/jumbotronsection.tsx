@@ -1,8 +1,13 @@
 import Reveal from "@/components/ui/Reveal";
+import { MapPin } from "lucide-react";
 
 /* FINALE — full-width "Save the Date" jumbotron.
    Render this LAST in app/page.tsx (after <RsvpSection />).
-   Background image: public/images/save-the-date-bg.jpg */
+   Background image: public/images/save-the-date-bg.jpg
+   Requires: npm install lucide-react */
+
+const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=S.S+Mahal+KGF+Robertsonpet+Parandahalli";
 
 export default function SaveTheDateSection() {
   return (
@@ -20,7 +25,7 @@ export default function SaveTheDateSection() {
       {/* CONTENT */}
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="text-[11px] uppercase tracking-[0.5em] text-gold-600">Save the Date</p>
+          <p className="text-[11px] uppercase tracking-[0.5em] text-gold-600">The countdown to forever starts now!! </p>
           <div className="mx-auto mt-5 flex items-center justify-center gap-3 text-gold-400">
             <span className="h-px w-12 bg-gold-400/60" />
             <span className="text-lg leading-none">❦</span>
@@ -40,9 +45,16 @@ export default function SaveTheDateSection() {
           <p className="mt-8 text-sm font-medium uppercase tracking-[0.4em] text-stone-700">
             25 . 10 . 2026
           </p>
-          <p className="mt-2 text-xs uppercase tracking-[0.3em] text-gold-600">
-            S.S Mahal, KGF
-          </p>
+          {/* VENUE — clickable, opens Google Maps, with location pin icon */}
+          <a
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.3em] text-gold-600 underline decoration-gold-400/50 underline-offset-4 transition-colors hover:text-gold-500"
+          >
+            <MapPin size={14} strokeWidth={2} className="shrink-0" />
+            S.S Mahal, KGF Robertsonpet Parandahalli
+          </a>
         </Reveal>
 
         <Reveal delay={0.3}>
