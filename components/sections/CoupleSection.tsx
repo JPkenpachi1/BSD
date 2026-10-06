@@ -7,19 +7,23 @@ export default function CoupleSection() {
     <section id="couple" className="relative overflow-hidden px-6 py-24">
 
       {/* 1. BACKGROUND IMAGE */}
-      {/* <img
+      <img
         src="/images/couple-bg.png"
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full  object-cover scale-[1]  "
-      /> */}
+        className="absolute inset-0 h-full w-full  object-cover scale-[1]  " 
+
+      />
       {/* 2. readability wash */}
       <div className="absolute inset-0 " />
 
       {/* 3. CONTENT — lifted above the image */}
       <div className="relative z-10 mx-auto max-w-5xl">
         <Reveal>
-          <SectionHeading eyebrow="The Wedding Of" title="He knelt to the ground and  pulled out a ring and said" />
+          {/* <SectionHeading eyebrow="The Wedding Of" title="He knelt to the ground and  pulled out a ring and said" /> */}
+               <h2 className="font-wedding text-4xl text-[#242424] text-center sm:text-5xl">
+  He knelt to the ground and pulled out a ring and said
+</h2>
         </Reveal>
         <div className="grid gap-14 sm:grid-cols-">
           <Reveal className="text-center">
