@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-
-/* HERO — temple photo as FULL background. Layered clouds sweep inward
-   from left & right, hold, then part. Names sit LEFT-aligned on the image.
-   Bottom-left loader (%) fades out after the reveal. */
+import { useMusic } from "@/components/background";
+import { Music, VolumeX } from "lucide-react";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 
 const cloudBumps = [90, 130, 100, 150, 110, 140, 95, 120];
 
@@ -28,6 +28,16 @@ export default function CloudReveal() {
   const rightCloudRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    // ── EDIT 1: LOCK scroll while the intro plays ──
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    // guard for the auto-glide: if the user scrolls manually, don't yank them
+    let userScrolled = false;
+    const markScrolled = () => { userScrolled = true; };
+    window.addEventListener("wheel", markScrolled, { passive: true });
+    window.addEventListener("touchmove", markScrolled, { passive: true });
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
@@ -63,11 +73,9 @@ export default function CloudReveal() {
           stagger: 0.08,
           ease: "power3.out",
         }, 0.2)
+        .to({}, { duration: 0.5 })
 
-        .to({}, { duration: 0.5 })   // hold fully covered
-
-        // 2. REVEAL — full-bg image zooms in, names rise from the left,
-        //    loader fades away, clouds part outward
+        // 2. REVEAL
         .to(imgRef.current, { opacity: 1, scale: 1, duration: 2, ease: "power1.out" }, "reveal")
         .to(loaderRef.current, { opacity: 0, y: 12, duration: 0.8, ease: "power2.in" }, "reveal+=1")
         .to(namesRef.current, { opacity: 1, x: 0, duration: 1, ease: "power3.out" }, "reveal+=0.5")
@@ -89,11 +97,34 @@ export default function CloudReveal() {
       // idle motion after entrance
       gsap.to(namesRef.current, { y: "-=8", duration: 2.4, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 5 });
       gsap.to(imgRef.current, { scale: 1.05, duration: 6, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 5 });
+
+      // ── EDIT 2: intro finished → UNLOCK scroll, then glide to #couple ──
+      tl.call(() => {
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+      });
+      tl.call(() => {
+        if (!userScrolled && window.scrollY < 8) {
+          gsap.to(window, {
+            scrollTo: { y: "#couple", offsetY: 0 },
+            duration: 1.4,
+            ease: "power2.inOut",
+          });
+        }
+      });
     }, sectionRef);
 
-    return () => ctx.revert();
+    // ── EDIT 3: cleanup restores scroll + listeners ──
+    return () => {
+      window.removeEventListener("wheel", markScrolled);
+      window.removeEventListener("touchmove", markScrolled);
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      ctx.revert();
+    };
   }, []);
 
+  const { playing, toggle } = useMusic();
   return (
     <section id="home" ref={sectionRef} className="relative h-dvh w-full overflow-hidden bg-cream-50">
 
@@ -104,8 +135,15 @@ export default function CloudReveal() {
         alt="Wedding venue"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      {/* readability gradient behind the left-aligned text */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent sm:bg-gradient-to-r sm:from-black/55 sm:via-black/15 sm:to-transparent" />
+
+      <button
+        onClick={toggle}
+        aria-label={playing ? "Turn music off" : "Play music"}
+        className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-gold-500/60 bg-white/80 text-gold-600 shadow-lg backdrop-blur-sm transition-transform active:scale-90 md:hidden"
+      >
+        {playing ? <VolumeX  size={20} /> : <Music className="animate-music-bounce" size={20} />}
+      </button>
 
       {/* LEFT-aligned names */}
       <div className="absolute bottom-0 left-0 flex h-[58%] w-full items-end pb-14 pl-6 sm:top-0 sm:h-full sm:items-center sm:pl-16">
@@ -135,7 +173,7 @@ export default function CloudReveal() {
         </div>
       </div>
 
-      {/* LOADER — bottom left, above clouds, fades out after reveal */}
+      {/* LOADER — bottom left, fades out after reveal */}
       <div ref={loaderRef} className="pointer-events-none absolute bottom-6 left-6 z-30 sm:bottom-10 sm:left-10">
         <div className="flex items-end gap-1 leading-none text-amber-900">
           <span ref={percentRef} className="text-5xl font-semibold tabular-nums sm:text-6xl">0</span>
@@ -149,7 +187,7 @@ export default function CloudReveal() {
         </p>
       </div>
 
-      {/* CLOUD LAYERS from LEFT (front = highest z) */}
+      {/* CLOUD LAYERS from LEFT */}
       {layers.map((L, i) => (
         <div
           key={"L" + i}

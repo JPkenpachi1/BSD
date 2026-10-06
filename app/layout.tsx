@@ -20,9 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-cream-50 text-stone-800 antialiased">
-        <BackgroundMusic/>
-        {children}</body>
+     
+<body className="bg-cream-50 text-stone-800 antialiased">
+  <BackgroundMusic>{children}</BackgroundMusic>
+</body>
     </html>
   );
 }
