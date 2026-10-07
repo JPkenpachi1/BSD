@@ -131,7 +131,7 @@ export default function CloudReveal() {
       {/* FULL-BACKGROUND photo */}
       <img
         ref={imgRef}
-        src="/images/temple.jpg"
+        src="/images/couple-bg.png"
         alt="Wedding venue"
         className="absolute inset-0 h-full w-full object-cover"
       />

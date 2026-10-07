@@ -7,13 +7,13 @@ export default function CoupleSection() {
     <section id="couple" className="relative overflow-hidden px-6 py-24">
 
       {/* 1. BACKGROUND IMAGE */}
-      <img
+      {/* <img
         src="/images/couple-bg.png"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full  object-cover scale-[1]  " 
 
-      />
+      /> */}
       {/* 2. readability wash */}
       <div className="absolute inset-0 " />
 
