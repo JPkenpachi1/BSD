@@ -3,18 +3,43 @@
 @theme {
   --font-wedding: "WeddingDay", "Brush Script MT", "Segoe Script", cursive;
 
-  --color-cream-50: #fdf6ec;
-  --color-cream-100: #f9ead2;
-  --color-cream-200: #f3d9b0;
-  --color-cream-300: #ecc489;
-  --color-gold-400: #d4af5e;
-  --color-gold-500: #c19a3f;
-  --color-gold-600: #a37f2c;
-  --color-maroon-700: #7c2d12;
-  --color-maroon-800: #5c1d0b;
+  /* ── FULL DARK WINE THEME — base: #570b1c ──
+     Same token names as your light theme, dark values.
+     Every component flips automatically. Zero component edits needed
+     (except the bg-white find-replace listed in the notes). */
+
+  /* surfaces — wine maroon, lightening upward */
+  --color-cream-50:  #570b1c;   /* main background (matches themeColor) */
+  --color-cream-100: #660f24;
+  --color-cream-200: #76132c;
+  --color-cream-300: #8a1a36;
+
+  /* golds — brightened to glow on wine */
+  --color-gold-400: #e6ca7d;
+  --color-gold-500: #d4af5e;
+  --color-gold-600: #c39c45;
+
+  /* headings — soft gold/ivory (dark maroon would vanish on wine) */
+  --color-maroon-700: #eac9a2;
+  --color-maroon-800: #f4dcb8;
+
+  /* amber — dark variants become light golds; light ones stay light */
+  --color-amber-50:  #fff8ea;
+  --color-amber-100: #fdeecb;
+  --color-amber-200: #f8df9e;
+  --color-amber-700: #e6b356;
+  --color-amber-900: #f0c87e;
+  --color-amber-950: #f6dda6;
+
+  /* stone — body text becomes warm light grays */
+  --color-stone-400: #a89f92;
+  --color-stone-500: #bfb6a8;
+  --color-stone-600: #d2c9bb;
+  --color-stone-700: #e4dccc;
+  --color-stone-800: #f2ecdf;
 }
 
-/* Your custom script font — drop the file at public/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf */
+/* Your custom script font */
 @font-face {
   font-family: "WeddingDay";
   src: url("/fonts/WeddingdayPersonalUseRegular-1Gvo0.ttf") format("truetype");
@@ -25,13 +50,17 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-cream-50);
 }
 
 ::selection {
-  background: var(--color-gold-400);
-  color: #fff;
+  background: var(--color-gold-500);
+  color: #570b1c;
 }
-
 
 /* gentle bounce for the music button icon */
 @keyframes music-bounce {

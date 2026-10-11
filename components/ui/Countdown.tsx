@@ -42,7 +42,7 @@ export default function Countdown() {
   return (
     <div className="mx-auto grid max-w-md grid-cols-4 gap-3 text-center">
       {cells.map((c) => (
-        <div key={c.label} className="rounded-xl border border-gold-400/40 bg-white/70 px-2 py-4 shadow-sm">
+        <div key={c.label} className="rounded-xl border border-gold-400/40  px-2 py-4 shadow-sm">
           <div className="text-2xl font-semibold tabular-nums text-maroon-800">{c.value}</div>
           <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-gold-600">{c.label}</div>
         </div>

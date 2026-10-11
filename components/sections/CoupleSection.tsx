@@ -21,7 +21,7 @@ export default function CoupleSection() {
       <div className="relative z-10 mx-auto max-w-5xl">
         <Reveal>
           {/* <SectionHeading eyebrow="The Wedding Of" title="He knelt to the ground and  pulled out a ring and said" /> */}
-               <h2 className="font-wedding text-4xl text-[#242424] text-center sm:text-5xl">
+               <h2 className="font-wedding text-4xl text-amber-50 text-center sm:text-5xl">
   He knelt to the ground and pulled out a ring and said
 </h2>
         </Reveal>
